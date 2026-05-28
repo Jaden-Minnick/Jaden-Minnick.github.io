@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaden Minnick — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --maroon: #861F41;
+      --maroon-dark: #5c1530;
+      --maroon-light: #a8284f;
+      --orange: #CC5500;
+      --orange-light: #e06020;
+      --cream: #faf8f5;
+      --warm-white: #ffffff;
+      --stone: #f2ede8;
+      --border: #e0d8d0;
+      --text: #1a1410;
+      --text-secondary: #5a4e47;
+      --text-muted: #8a7d77;
+      --header-bg: url('images/HokieStone.jpg');
+      --portrait: url('images/prof-picture.jpeg');
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    .site-header {
+      position: relative;
+      background-image: var(--header-bg);
+      background-size: cover;
+      background-position: center 40%;
+      padding: 0;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(86,21,41,0.88) 0%, rgba(30,10,15,0.75) 100%);
+    }
+    .header-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .portrait {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.5);
+      background-image: var(--portrait);
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+    .header-text h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+    }
+    .header-text .tagline {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
+    nav {
+      background: var(--maroon-dark);
+      border-bottom: 2px solid var(--orange);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .nav-inner {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    nav a {
+      color: rgba(255,255,255,0.82);
+      padding: 1rem 1.4rem;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    nav a.active {
+      color: #fff;
+      border-bottom-color: var(--orange);
+      background: rgba(255,255,255,0.04);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .section { display: none; animation: fadeUp 0.4s ease both; }
+    .section.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--maroon);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    .sub-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--maroon-dark);
+      margin: 2.5rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .sub-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    p { margin-bottom: 1rem; color: var(--text-secondary); }
+    ul { padding-left: 1.3rem; }
+    ul li { margin-bottom: 0.45rem; color: var(--text-secondary); }
+
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) { .about-intro { grid-template-columns: 1fr; } }
+    .about-bio p { font-size: 1.05rem; line-height: 1.85; }
+
+    .cv-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .cv-card h3 { font-family: 'EB Garamond', serif; font-size: 1.2rem; color: var(--maroon); margin-bottom: 0.5rem; }
+    .cv-card p { font-size: 0.88rem; margin-bottom: 1rem; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--maroon);
+      color: #fff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary:hover { background: var(--maroon-light); transform: translateY(-1px); }
+
+    .exp-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--maroon);
+      border-radius: 10px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .exp-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .exp-card.orange-accent { border-left-color: var(--orange); }
+
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .exp-header h3 { font-family: 'EB Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--text); }
+    .exp-badge {
+      background: var(--stone);
+      color: var(--text-secondary);
+      font-size: 0.77rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-weight: 500;
+      white-space: nowrap;
+      border: 1px solid var(--border);
+    }
+    .exp-org { font-size: 0.88rem; color: var(--maroon); font-weight: 500; margin-bottom: 0.7rem; }
+    .exp-card ul { margin-top: 0.5rem; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    .project-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .project-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .project-card h4 { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: var(--maroon-dark); margin-bottom: 0.5rem; }
+    .project-card p { font-size: 0.88rem; margin-bottom: 0; }
+    .proj-date-badge { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.4rem; }
+    .proj-link { display: inline-block; margin-top: 0.7rem; font-size: 0.82rem; font-weight: 600; color: var(--maroon); }
+
+    .moller-images { display: flex; flex-direction: column; gap: 1rem; margin: 1.2rem 0; }
+    .moller-images a { display: block; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .moller-images img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
+    .moller-images a:hover img { transform: scale(1.02); }
+
+    .affil-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+    .affil-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .affil-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .affil-logo { flex-shrink: 0; width: 64px; height: 56px; display: flex; align-items: center; justify-content: center; }
+    .affil-logo img { max-height: 52px; max-width: 64px; width: auto; height: auto; object-fit: contain; display: block; }
+    .affil-info h3 { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: var(--maroon-dark); margin-bottom: 0.2rem; }
+    .affil-info p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.5; }
+    .affil-info .affil-role { color: var(--orange); font-weight: 500; font-size: 0.82rem; }
+
+    .honors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .honor-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--maroon);
+      border-radius: 8px;
+      padding: 1.1rem 1.3rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .honor-card strong { display: block; color: var(--maroon-dark); font-weight: 600; margin-bottom: 0.2rem; font-size: 0.95rem; }
+
+    .cert-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+    .cert-item {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 0.8rem 1.1rem;
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .skill-group {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.3rem;
+    }
+    .skill-group h4 { font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--maroon); margin-bottom: 0.6rem; }
+    .skill-group p { font-size: 0.87rem; margin-bottom: 0; }
+
+    .pubs-list { list-style: none; padding: 0; }
+    .pubs-list li {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.3rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .pub-date { color: var(--maroon); font-weight: 600; white-space: nowrap; font-size: 0.82rem; flex-shrink: 0; }
+
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .ref-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .ref-card h3 { font-family: 'EB Garamond', serif; font-size: 1.2rem; color: var(--maroon-dark); margin-bottom: 0.2rem; }
+    .ref-card .ref-title { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.6rem; line-height: 1.45; }
+    .ref-card .ref-rel { font-size: 0.82rem; color: var(--orange); font-weight: 500; margin-bottom: 0.8rem; }
+    .ref-card .ref-contact { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.9; }
+    .ref-card .ref-contact a { color: var(--maroon); text-decoration: none; }
+    .ref-card .ref-contact a:hover { text-decoration: underline; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--maroon);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 1.8rem;
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--warm-white);
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+    .back-btn:hover { background: var(--stone); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    .detail-hero {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--maroon);
+      border-radius: 10px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .detail-hero h2 { font-family: 'EB Garamond', serif; font-size: 1.7rem; color: var(--maroon-dark); margin-bottom: 0.3rem; }
+    .detail-hero .detail-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+    .detail-section { margin-bottom: 2rem; }
+    .detail-section h3 { font-family: 'EB Garamond', serif; font-size: 1.25rem; color: var(--maroon-dark); margin-bottom: 0.7rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+
+    @media (max-width: 600px) {
+      main { padding: 2rem 1rem 4rem; }
+      .header-inner { padding: 1.5rem 1.2rem; gap: 1rem; }
+      nav a { padding: 0.7rem 0.7rem; font-size: 0.72rem; }
+      .affil-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="portrait"></div>
+      <div class="header-text">
+        <h1>Jaden Minnick</h1>
+        <p class="tagline">B.S. Chemical Engineering &amp; B.S. Physics &nbsp;·&nbsp; Virginia Tech </p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a onclick="showSection('about', this)" class="active">About Me</a>
+      <a onclick="showSection('experience', this)">Experience</a>
+      <a onclick="showSection('projects', this)">Projects</a>
+      <a onclick="showSection('affiliations', this)">Affiliations</a>
+      <a onclick="showSection('honors', this)">Honors &amp; Certifications</a>
+      <a onclick="showSection('references', this)">References</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about" class="section active">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-intro">
+        <div class="about-bio">
+          <p>I am a senior pursuing a dual degree in <strong>Chemical Engineering and Physics</strong>, with minors in Nuclear Engineering and Mathematics. My academic training spans thermodynamics, transport phenomena, process design, semiconductor physics, and nuclear systems; equipping me to approach complex engineering problems from both a fundamental and applied perspective.</p>
+          <p>My research foundation was built through the <strong>MOLLER experiment at Jefferson Lab</strong>, where I have worked since January 2024 under Dr. Mark Pitt. This work involved designing and characterizing Small Angle Monitors, calibrating Photomultiplier tubes, and resolving complex noise and shielding challenges in our NIM-based readout chain which has sharpened the diagnostic intuition and experimental patience I want to bring into fusion research.</p>
+          <p>This past summer, I studied abroad at the <strong>Technical University of Denmark</strong> with Dr. Aaron Goldstein, conducting hands-on thermodynamic and transport experiments including rotary vacuum filtration, distillation, liquid–liquid extraction, fluidized-bed drying, and process control. I developed Python models to analyze transport behavior and quantify deviations from theory which has directly reinforced the modeling and experimental skills relevant to thermohydraulic research.</p>
+          <p>Following graduation, I plan to pursue a <strong>Ph.D. in Nuclear Engineering</strong>, focusing on heat transfer in plasma-facing components, two-phase flow and boiling, and reactor component design for next-generation devices.</p>
+        </div>
+        <div class="cv-card">
+          <h3>Curriculum Vitae</h3>
+          <p>Download a full PDF of my academic and professional record.</p>
+          <a href="files/Jaden_Minnick_CV.pdf" target="_blank" class="btn-primary">View / Download CV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <h2 class="section-title">Experience</h2>
+
+      <h3 class="sub-title">Research</h3>
+      <div class="exp-card">
+        <div class="exp-header">
+          <h3>The MOLLER Experiment</h3>
+          <span class="exp-badge">January 2024 – Present</span>
+        </div>
+        <p class="exp-org">Virginia Tech Physics Department &nbsp;·&nbsp; Jefferson Lab, Newport News, VA</p>
+        <p>The Measurement of a Lepton-Lepton Electroweak Reaction (MOLLER) experiment aims to precisely measure the parity-violating asymmetry in electron-electron (Møller) scattering, providing a unique determination of the weak mixing angle at low energies and complementing searches at high-energy colliders like the LHC.</p>
+        <ul>
+          <li>Design, testing, and operation of Small Angle Monitors (SAMs) for ultra-precise false asymmetry monitoring.</li>
+          <li>Photoelectron (PE) lightguide testing to ensure optimal light transmission and efficiency.</li>
+          <li>Single PE calibrations (SPE) for accurate and consistent measurements.</li>
+          <li>Characterization of Photomultiplier Tubes (PMTs) to meet stringent detector system requirements.</li>
+          <li>Resolved a persistent noise problem in the NIM-based readout chain (attenuators, fan-in/fan-out, discriminators, digitizers) through systematic shielding and circuit diagnostics, eliminating detector instability entirely.</li>
+        </ul>
+        <div style="margin-top:1rem;">
+          <a onclick="showSection('moller', null)" class="btn-primary" style="font-size:0.82rem; padding:0.55rem 1.1rem;">View Full MOLLER Project Page →</a>
+        </div>
+        <div class="moller-images" style="margin-top:1.2rem;">
+          <a href="https://moller.jlab.org/" target="_blank" rel="noopener">
+            <img src="images/hall-a_1-1024x287.jpg" alt="MOLLER Experiment Hall A">
+          </a>
+          <a href="https://hallaweb.jlab.org/12GeV/Moller/downloads/DOE_Proposal/DOE_Moller.pdf" target="_blank" rel="noopener">
+            <img src="images/Moller-Apparatus-1024x643.png" alt="MOLLER Experiment Apparatus">
+          </a>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Work Experience</h3>
+
+      <div class="exp-card orange-accent">
+        <div class="exp-header">
+          <h3>Chemistry Recitation Teaching Assistant</h3>
+          <span class="exp-badge">Jan – May 2024</span>
+        </div>
+        <p class="exp-org">Virginia Tech College of Science &nbsp;·&nbsp; Blacksburg, VA</p>
+        <ul>
+          <li>Instructed and administered weekly quizzes to approximately 30 students.</li>
+          <li>Skills: FERPA, Chemistry, Interpersonal Communication, Grading, Pedagogy.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card orange-accent">
+        <div class="exp-header">
+          <h3>Electrical Engineering Mentorship</h3>
+          <span class="exp-badge">Jan – Jun 2022</span>
+        </div>
+        <p class="exp-org">MEI Engineering Inc &nbsp;·&nbsp; Harrisonburg, VA</p>
+        <ul>
+          <li>Worked with DataCAD, AutoCAD, and CAD for placement and design of circuits, lighting, fire equipment, and power transformers.</li>
+          <li>Used Excel to calculate electrical load, air circulation, and square footage across projects.</li>
+          <li>Participated in client conference calls to discuss project timelines and requirements.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card orange-accent">
+        <div class="exp-header">
+          <h3>Medical Lab Mentorship</h3>
+          <span class="exp-badge">Aug – Dec 2021</span>
+        </div>
+        <p class="exp-org">Sentara RMH Medical Center &nbsp;·&nbsp; Harrisonburg, VA</p>
+        <ul>
+          <li>Oversaw operations across departments: Blood Bank, Hematology, Urinalysis, Chemistry, Microbiology, Semen Analysis, and Pathology.</li>
+          <li>Assisted with quality control, maintenance, reagent reloading, and electrolyte replacement.</li>
+          <li>Helped troubleshoot medical result errors and discrepancies.</li>
+        </ul>
+      </div>
+
+      <h3 class="sub-title">Volunteer Work</h3>
+
+      <div class="exp-card">
+        <div class="exp-header"><h3>Science Demos — Children's Museum</h3><span class="exp-badge">Jan 2024 – Present</span></div>
+        <p class="exp-org">Christiansburg, VA</p>
+        <ul><li>Showcased foundational chemistry concepts to young children as part of community STEM outreach.</li></ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header"><h3>Alpha Chi Sigma — Tutoring Committee Head</h3><span class="exp-badge">Sep 2023 – Present</span></div>
+        <p class="exp-org">Blacksburg, VA</p>
+        <ul>
+          <li>Coordinate weekly tutoring sessions in chemistry, physics, and mathematics for undergraduate students.</li>
+          <li>Manage and mentor a team of volunteer tutors, matching students with academic support based on subject needs.</li>
+          <li>Foster a collaborative learning environment promoting academic excellence and peer mentorship.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header"><h3>Alpha Chi Sigma — Professional Committee Head</h3><span class="exp-badge">Sep 2024 – Present</span></div>
+        <p class="exp-org">Blacksburg, VA</p>
+        <ul>
+          <li>Organize professional development events including industry speaker sessions, résumé workshops, and alumni networking panels.</li>
+          <li>Develop partnerships with faculty, researchers, and industry professionals to expand members' career exposure.</li>
+          <li>Lead initiatives preparing members for internships, research positions, graduate programs, and technical interviews.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header"><h3>Volunteer Summer Swim Coach</h3><span class="exp-badge">Jun 2019 – Jul 2023</span></div>
+        <p class="exp-org">Spotswood Country Club &nbsp;·&nbsp; Harrisonburg, VA</p>
+        <ul>
+          <li>Mentored athletes on training habits, nutrition, and sportsmanship.</li>
+          <li>Created engaging "Fun Friday" sessions featuring relays, games, and "Pool Jeopardy."</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header"><h3>Volunteer Actor</h3><span class="exp-badge">Jun 2018 – Aug 2023</span></div>
+        <p class="exp-org">Pleasant Valley Lutheran Church</p>
+        <ul><li>Led and supported performances with proceeds benefiting mission trips, hurricane relief, food drives, and academic scholarships.</li></ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2 class="section-title">Engineering Projects</h2>
+      <p style="margin-bottom:1.5rem;">A selection of research, simulation, and design projects spanning nuclear engineering, chemical process design, experimental physics, and embedded systems.</p>
+      <div class="projects-grid">
+
+        <div class="project-card" onclick="showSection('proj-cfd', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Spring 2026</div>
+          <h4>Conjugate Heat Transfer in a Tokamak First Wall</h4>
+          <p>CFD simulation in ANSYS Fluent of cooling channel performance under MW/m² plasma heat fluxes in a tokamak-inspired 2D first wall geometry.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-enzyme', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Spring 2026</div>
+          <h4>Production-Scale Enzyme Processing System Design</h4>
+          <p>Automated control of a biochemical adsorption process for industrial-scale enzyme-based product formulations. ChE Senior Design — Novonesis.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-aspen-reactor', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Spring 2026</div>
+          <h4>Aspen Plus Reactor &amp; Column Optimization</h4>
+          <p>Designed an industrial process for synthesis and separation of acetonitrile, toluene, and benzene. Performed heat integration, economic optimization, and capital cost estimation.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-absorber', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Fall 2025</div>
+          <h4>Absorber Revamp &amp; Heat-Integration</h4>
+          <p>Redesigned a reboiled solvent absorber system, achieving a <strong>29% reduction in annual operating cost</strong> through strategic heat-duty adjustments and exchanger reconfiguration.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-optical', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Fall 2025</div>
+          <h4>Optical Pumping &amp; Zeeman Spectroscopy</h4>
+          <p>Performed optical pumping experiments on Rb-85 and Rb-87 to study hyperfine structure and Zeeman splitting using RF resonance techniques and Helmholtz coil field sweeps.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-hall', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Fall 2025</div>
+          <h4>Hall Effect &amp; Semiconductor Characterization</h4>
+          <p>Conducted a full experimental investigation of the Hall Effect in n-type and p-type germanium using a lock-in amplifier, determining carrier density, mobility, and conductivity type.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-arduino', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Spring 2023</div>
+          <h4>Arduino Fruit Ripeness Detector</h4>
+          <p>Developed an ethylene gas sensor-based automation system using Arduino, with threshold-based outputs validated through controlled experimental testing.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-hrm', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Spring 2023</div>
+          <h4>Electrical Circuit Heart Rate Monitor</h4>
+          <p>Developed a heart rate monitoring system integrating physiological sensors, signal conditioning circuitry, and real-time digital display output.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+        <div class="project-card" onclick="showSection('proj-windmill', null)" style="cursor:pointer;">
+          <div class="proj-date-badge">Spring 2023</div>
+          <h4>Renewable Energy Windmill Design</h4>
+          <p>Designed and fabricated a small-scale wind turbine using CAD modeling. Analyzed power output vs. wind speed using Python/MATLAB and compared against theoretical predictions.</p>
+          <span class="proj-link">View Details →</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AFFILIATIONS -->
+    <section id="affiliations" class="section">
+      <h2 class="section-title">Affiliations</h2>
+      <div class="affil-grid">
+
+        <div class="affil-card">
+          <div class="affil-logo"><img src="images/AlphaChiSigmaCoatOfArms.png" alt="Alpha Chi Sigma"></div>
+          <div class="affil-info">
+            <h3>Alpha Chi Sigma (ΑΧΣ)</h3>
+            <p class="affil-role">Tutoring Committee Head · Professional Committee Head</p>
+            <p>Beta Psi Pledge Class · Sep 2023 – Present<br>Intramural Basketball: Power Forward</p>
+          </div>
+        </div>
+
+        <div class="affil-card">
+          <div class="affil-logo"><img src="images/OmegaChiEpsilon-removebg-preview.png" alt="Omega Chi Epsilon"></div>
+          <div class="affil-info">
+            <h3>Omega Chi Epsilon (ΩΧΕ)</h3>
+            <p class="affil-role">Vice President (Jan 2025 – Present) · Secretary (2024)</p>
+            <p>Chemical Engineering Honor Society · Dec 2023 – Present</p>
+          </div>
+        </div>
+
+        <div class="affil-card">
+          <div class="affil-logo"><img src="images/AICHE-removebg-preview.png" alt="AIChE"></div>
+          <div class="affil-info">
+            <h3>American Institute of Chemical Engineers (AIChE)</h3>
+            <p class="affil-role">Mentorship Program Participant</p>
+            <p>Sep 2022 – Present</p>
+          </div>
+        </div>
+
+        <div class="affil-card">
+          <div class="affil-logo"><img src="images/NSPE-logo-vertical-CMYK-removebg-preview.png" alt="NSPE"></div>
+          <div class="affil-info">
+            <h3>National Society of Professional Engineers (NSPE)</h3>
+            <p>Aug 2022 – Present</p>
+          </div>
+        </div>
+
+        <div class="affil-card">
+          <div class="affil-logo"><img src="images/ANS-removebg-preview-1.png" alt="ANS"></div>
+          <div class="affil-info">
+            <h3>American Nuclear Society (ANS)</h3>
+            <p>Aug 2022 – Present</p>
+          </div>
+        </div>
+
+        <div class="affil-card">
+          <div class="affil-logo"><img src="images/acs-logo.png" alt="ACS"></div>
+          <div class="affil-info">
+            <h3>American Chemical Society (ACS)</h3>
+            <p>Aug 2022 – Present</p>
+          </div>
+        </div>
+
+        <div class="affil-card">
+          <div class="affil-logo"><img src="images/APS__American_Physical_Society-logo-B8A53BC34C-seeklogo.com_.png" alt="APS"></div>
+          <div class="affil-info">
+            <h3>American Physical Society (APS)</h3>
+            <p>Jan 2023 – Present</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HONORS -->
+    <section id="honors" class="section">
+      <h2 class="section-title">Honors &amp; Certifications</h2>
+
+      <h3 class="sub-title">Honors</h3>
+      <div class="honors-grid">
+        <div class="honor-card"><strong>Dean's List — Virginia Tech</strong>Fall 2022 – Fall 2025</div>
+        <div class="honor-card"><strong>Omega Chi Epsilon</strong>Chemical Engineering Honor Society · Fall 2023 – Present</div>
+        <div class="honor-card"><strong>Sigma Pi Sigma</strong>Physics Honor Society · Spring 2025 – Present</div>
+        <div class="honor-card"><strong>Outstanding Undergraduate Research Award</strong>Webster &amp; Sara Schoene Richardson Memorial Scholarship · March 2024 &amp; March 2025</div>
+        <div class="honor-card"><strong>Science Gold Medallion</strong>Spotswood High School · May 2022</div>
+      </div>
+
+      <h3 class="sub-title">Certifications</h3>
+      <div class="cert-list">
+        <div class="cert-item">Radiation Safety and Training</div>
+        <div class="cert-item">Manufacturing Technician (5S, Kaizen)</div>
+        <div class="cert-item">Manufacturing Specialist (Six Sigma, Lean)</div>
+        <div class="cert-item">OSHA HazCom RTK Training</div>
+        <div class="cert-item">Oxygen Deficiency Hazard (SAF103)</div>
+        <div class="cert-item">Security Awareness Training (GEN034)</div>
+        <div class="cert-item">General Access RWP (SAF801kd)</div>
+        <div class="cert-item">Physics Division Work Governance (SAF116kd)</div>
+        <div class="cert-item">W!SE Financial Literacy Certification</div>
+        <div class="cert-item">Intro to Process Safety (ELA950)</div>
+        <div class="cert-item">Hazard Recognition (ELA951)</div>
+        <div class="cert-item">Identifying &amp; Minimizing Process Safety Hazards (ELA952)</div>
+        <div class="cert-item">Intro to Managing Process Safety Hazards (ELA953)</div>
+        <div class="cert-item">Inherently Safer Design (ELA984)</div>
+        <div class="cert-item">Process Safety Lessons Taught by Experience (ELA908)</div>
+      </div>
+
+      <h3 class="sub-title">Skills</h3>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Programming &amp; Analysis</h4>
+          <p>Python (NumPy, SciPy, Matplotlib), ROOT, MATLAB, Linux Bash</p>
+        </div>
+        <div class="skill-group">
+          <h4>Modeling &amp; Engineering Tools</h4>
+          <p>Aspen Plus, SOLIDWORKS, Autodesk AutoCAD &amp; Fusion 360, Mathematica</p>
+        </div>
+        <div class="skill-group">
+          <h4>Instrumentation &amp; DAQ</h4>
+          <p>NIM modules, PMTs, scintillators, digitizers, oscilloscopes, detector calibration workflows</p>
+        </div>
+        <div class="skill-group">
+          <h4>Software &amp; Technical</h4>
+          <p>LaTeX, HTML, CSS, JavaScript, Microsoft Office (Excel, Word, PowerPoint)</p>
+        </div>
+        <div class="skill-group">
+          <h4>Systems &amp; Laboratory</h4>
+          <p>Electrical circuits, signal processing, semiconductor characterization, vacuum and radiation lab safety</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section id="references" class="section">
+      <h2 class="section-title">References</h2>
+      <div class="ref-grid">
+
+        <div class="ref-card">
+          <h3>Dr. Mark Pitt</h3>
+          <p class="ref-title">Physics Department Chair &amp; Professor, Virginia Tech</p>
+          <p class="ref-rel">Research Advisor</p>
+          <div class="ref-contact">
+            <div>(540) 921-7455</div>
+            <div><a href="mailto:pitt@vt.edu">pitt@vt.edu</a></div>
+            <div><a href="https://www.phys.vt.edu/About/people/Faculty/Pitt.html" target="_blank" rel="noopener">Faculty Profile →</a></div>
+          </div>
+        </div>
+
+        <div class="ref-card">
+          <h3>Dr. Aaron Goldstein</h3>
+          <p class="ref-title">Assistant Department Head for Undergraduate Studies &amp; Associate Professor, Chemical Engineering</p>
+          <p class="ref-rel">Study Abroad Program Professor; Heat Transfer Professor</p>
+          <div class="ref-contact">
+            <div>(540) 231-3674</div>
+            <div><a href="mailto:goldst@vt.edu">goldst@vt.edu</a></div>
+            <div><a href="https://che.vt.edu/People/faculty/Goldstein.html" target="_blank" rel="noopener">Faculty Profile →</a></div>
+          </div>
+        </div>
+
+        <div class="ref-card">
+          <h3>Dr. Steven Wrenn</h3>
+          <p class="ref-title">Chemical Engineering Department Head &amp; Professor</p>
+          <p class="ref-rel">ChE Seminar Professor; Mentor</p>
+          <div class="ref-contact">
+            <div>(540) 231-6829</div>
+            <div><a href="mailto:stevenpw91@vt.edu">stevenpw91@vt.edu</a></div>
+            <div><a href="https://che.vt.edu/People/faculty/Wrenn.html" target="_blank" rel="noopener">Faculty Profile →</a></div>
+          </div>
+        </div>
+
+        <div class="ref-card">
+          <h3>Dr. Thomas O'Donnell</h3>
+          <p class="ref-title">Associate Professor of Physics, Virginia Tech</p>
+          <p class="ref-rel">Summer Physics REU Director; Intro Physics &amp; Circuits Lab Professor</p>
+          <div class="ref-contact">
+            <div>(540) 231-3308</div>
+            <div><a href="mailto:tdonnell@vt.edu">tdonnell@vt.edu</a></div>
+            <div><a href="https://www.phys.vt.edu/About/people/Faculty/thomas-o-donnell.html" target="_blank" rel="noopener">Faculty Profile →</a></div>
+          </div>
+        </div>
+
+        <div class="ref-card">
+          <h3>Daniel Valmassei</h3>
+          <p class="ref-title">Ph.D. Student, Virginia Tech Physics Department</p>
+          <p class="ref-rel">Direct Supervisor (MOLLER Experiment)</p>
+          <div class="ref-contact">
+            <div>(816) 466-0615</div>
+            <div><a href="mailto:dvalmassei@vt.edu">dvalmassei@vt.edu</a></div>
+            <div><a href="https://www.linkedin.com/in/daniel-valmassei/" target="_blank" rel="noopener">LinkedIn Profile →</a></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MOLLER DETAIL PAGE -->
+    <section id="moller" class="section">
+      <span class="back-btn" onclick="showSection('experience', null)">← Back to Experience</span>
+      <h2 class="section-title">The MOLLER Experiment</h2>
+      <div class="detail-hero">
+        <h2>Small Angle Monitor Diagnostics &amp; PMT Characterization</h2>
+        <p class="detail-meta">Virginia Tech Physics Department &nbsp;·&nbsp; Jefferson Lab, Newport News, VA &nbsp;·&nbsp; January 2024 – Present &nbsp;·&nbsp; Advisor: Dr. Mark Pitt</p>
+        <p>The MOLLER experiment aims to measure the parity-violating asymmetry in Møller scattering with sub-percent precision, providing the most precise determination of the weak mixing angle at low momentum transfer of any planned experiment in the next decade. Any deviation from the Standard Model prediction would indicate new physics at TeV-scale energies.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Scientific Background</h3>
+        <p>Parity-violating electron scattering is a precision electroweak probe. By measuring the helicity-dependent cross-section asymmetry in longitudinally polarized electron scattering off atomic electrons, MOLLER extracts the weak charge of the electron. The Small Angle Monitors (SAMs) provide sensitive monitoring of false (background) asymmetries — keeping these below the parts-per-billion level is critical to the experiment's success.</p>
+      </div>
+      <div class="detail-section">
+        <h3>My Contributions</h3>
+        <ul>
+          <li><strong>PMT Characterization:</strong> Tested and characterized Hamamatsu R375 photomultiplier tubes operating with a custom collaboration-built base, requiring careful gain calibration and stability verification.</li>
+          <li><strong>Single Photoelectron (SPE) Calibrations:</strong> Performed SPE measurements to establish accurate detector gain and quantum efficiency benchmarks.</li>
+          <li><strong>Lightguide Testing:</strong> Evaluated optical lightguide coupling efficiency to ensure maximum light collection from scintillators to PMTs.</li>
+          <li><strong>Noise Mitigation:</strong> Identified and eliminated a persistent noise problem dominating the detector output through systematic shielding modifications and circuit isolation across the full NIM readout chain (attenuators, fan-in/fan-out, discriminators, digitizers).</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Relevance to Fusion Research Goals</h3>
+        <p>The diagnostic skills developed here — noise isolation in complex readout chains, PMT calibration under stringent stability requirements, and systematic troubleshooting — translate directly to high-heat-flux diagnostics and thermohydraulic instrumentation in fusion reactor research. Both contexts demand sub-noise-floor precision and methodical root-cause analysis.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Conference &amp; Research Presentations</h3>
+        <ul class="pubs-list">
+          <li><span class="pub-date">Oct 2025</span>The Physics and Astronomy Congress (PhysCon) — Denver, CO</li>
+          <li><span class="pub-date">Oct 2025</span>Southeastern Section of the APS (SESAPS) — James Madison University</li>
+          <li><span class="pub-date">Apr 2025</span>Virginia Tech Chemical Engineering Showcase</li>
+          <li><span class="pub-date">Feb 2025</span>Virginia Tech Chemical Engineering Seminar</li>
+          <li><span class="pub-date">Dec 2024</span>Virginia Tech Chemical Engineering Showcase</li>
+          <li><span class="pub-date">Oct 2024</span>APS Division of Nuclear Physics (DNP) — MIT</li>
+          <li><span class="pub-date">Jul 2024</span>Virginia Tech Summer Research Conference</li>
+          <li><span class="pub-date">Jul 2024</span>Virginia Tech Department of Physics Conference</li>
+        </ul>
+      </div>
+      <div class="moller-images">
+        <a href="https://moller.jlab.org/" target="_blank" rel="noopener">
+          <img src="images/hall-a_1-1024x287.jpg" alt="Jefferson Lab Hall A">
+        </a>
+        <a href="https://hallaweb.jlab.org/12GeV/Moller/downloads/DOE_Proposal/DOE_Moller.pdf" target="_blank" rel="noopener">
+          <img src="images/Moller-Apparatus-1024x643.png" alt="MOLLER Apparatus Schematic">
+        </a>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: CFD -->
+    <section id="proj-cfd" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Conjugate Heat Transfer in a Tokamak First Wall</h2>
+      <div class="detail-hero">
+        <h2>CFD Simulation of First Wall Cooling Under Plasma Heat Flux</h2>
+        <p class="detail-meta">ME 4984 — Computational Fluid Dynamics &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Chun Li &amp; Jaden Minnick &nbsp;·&nbsp; February 2026 – Present</p>
+        <p>In a tokamak fusion reactor, the first wall is exposed to extremely high heat fluxes from the plasma — often exceeding 10–15 MW/m². This project models a simplified tokamak first wall cross-section in ANSYS Fluent to evaluate cooling channel performance, determine temperature distributions, and assess material safety limits under reactor-relevant conditions.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Physical Problem &amp; Motivation</h3>
+        <p>Reliable thermal management of plasma-facing components is one of the central engineering challenges in fusion reactor design. Poor heat removal leads to material erosion, structural cracking, plasma contamination, and reduced reactor availability. This project develops a validated CFD model to build intuition for the thermohydraulic behavior of first wall cooling systems — directly relevant to my graduate research goals.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Geometry &amp; Domain</h3>
+        <ul>
+          <li><strong>Tungsten armor layer:</strong> t = 10 mm (plasma-facing surface)</li>
+          <li><strong>Copper alloy structural layer (CuCrZn):</strong> t = 25 mm</li>
+          <li><strong>Coolant:</strong> Water at 3 m/s, 100°C, 3 MPa</li>
+          <li><strong>Shield:</strong> Tungsten backing</li>
+          <li><strong>Plasma effect:</strong> Uniform surface heat flux (1–10 MW/m²)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Modeling Approach</h3>
+        <ul>
+          <li><strong>Software:</strong> ANSYS Fluent — pressure-based, steady-state solver</li>
+          <li><strong>Flow regime:</strong> Laminar baseline; turbulent extension (k-ε / k-ω) if conditions warrant</li>
+          <li><strong>Mesh:</strong> Structured mesh with wall-fluid interface refinement; mesh convergence study performed</li>
+          <li><strong>Convergence:</strong> All residuals ≤ 10⁻⁵ to 10⁻⁶</li>
+          <li><strong>Boundary conditions:</strong> Constant heat flux at plasma face, velocity inlet, outflow, no-slip walls, coupled thermal interface</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Key Research Questions</h3>
+        <ul>
+          <li>What is the temperature distribution throughout the wall and coolant at MW/m² heat fluxes?</li>
+          <li>Does the maximum wall temperature remain within safe material limits for tungsten and CuCrZn?</li>
+          <li>How does coolant velocity affect heat removal performance?</li>
+          <li>How does cooling effectiveness degrade with increasing plasma heat flux?</li>
+          <li>Which coolant provides superior thermal performance under identical operating conditions?</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Team Responsibilities</h3>
+        <div class="projects-grid">
+          <div class="project-card"><h4>Chun Li</h4><p>Geometry creation in SpaceClaim, volume mesh generation, and ANSYS Fluent solver setup.</p></div>
+          <div class="project-card"><h4>Jaden Minnick</h4><p>Physical modeling, boundary condition specification, post-processing, results analysis, and final report.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: ENZYME PROCESSING -->
+    <section id="proj-enzyme" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Production-Scale Enzyme Processing System Design</h2>
+      <div class="detail-hero">
+        <h2>Automated Control of Biochemical Adsorption Process</h2>
+        <p class="detail-meta">ChE Senior Design — Novonesis &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Spring 2026</p>
+        <p>This project focuses on the design of an industrial-scale system to support a biochemical adsorption process used in enzyme-based product formulations. The work bridges laboratory-scale research and real-world manufacturing by developing a scalable, controlled process environment.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Project Overview</h3>
+        <p>Many enzyme-based systems face challenges with stability and consistency during large-scale production. This project explores how controlled process conditions — particularly pH, temperature, and mixing — can be used to improve reliability in an adsorption-based formulation process. The goal is to design a system capable of maintaining these conditions at scale through automation and process integration.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Engineering Focus</h3>
+        <ul>
+          <li>Development of a process flow design for a large-scale batch system</li>
+          <li>Implementation of automated control strategies for key variables</li>
+          <li>Integration of buffer preparation and dosing operations</li>
+          <li>Consideration of mixing, heat transfer, and mass transfer effects</li>
+          <li>Design for scalability, consistency, and operational reliability</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>System Features</h3>
+        <ul>
+          <li>Controlled fluid delivery using metered pumping systems</li>
+          <li>Real-time monitoring of process conditions (pH, temperature)</li>
+          <li>Feedback control to maintain stable operating conditions</li>
+          <li>Integration with existing industrial processing equipment</li>
+          <li>Design considerations for cleaning, safety, and repeatability</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Key Challenges</h3>
+        <ul>
+          <li>Maintaining uniform conditions in large-volume systems</li>
+          <li>Designing effective control strategies for sensitive biochemical processes</li>
+          <li>Balancing process performance with industrial constraints</li>
+          <li>Ensuring consistent operation across repeated production cycles</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Deliverables</h3>
+        <p>The project delivers a complete conceptual design for a controlled processing system, including process flow development, equipment selection and sizing considerations, a control strategy framework, and evaluation of economic and operational feasibility.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Skills Demonstrated</h3>
+        <div class="skills-grid">
+          <div class="skill-group"><h4>Process Design</h4><p>Process design and systems thinking; scaling from lab to industrial systems</p></div>
+          <div class="skill-group"><h4>Transport Phenomena</h4><p>Fundamentals of heat, mass, and fluid flow in biochemical contexts</p></div>
+          <div class="skill-group"><h4>Control &amp; Automation</h4><p>Process control and automation concepts; feedback loop design</p></div>
+          <div class="skill-group"><h4>Technical Communication</h4><p>Engineering analysis and written/oral technical communication</p></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <h3>Team Contribution</h3>
+        <p>Worked as part of a multidisciplinary team to develop system design, analyze process requirements, and evaluate performance at scale.</p>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: ASPEN REACTOR -->
+    <section id="proj-aspen-reactor" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Aspen Plus Reactor &amp; Column Optimization</h2>
+      <div class="detail-hero">
+        <h2>Industrial Process Design for Acetonitrile, Toluene &amp; Benzene</h2>
+        <p class="detail-meta">Chemical Engineering Process Design &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Fall 2024</p>
+        <p>Designed a full industrial process for the synthesis and separation of acetonitrile, toluene, and benzene using reactive and distillation unit operations in Aspen Plus, with a focus on heat integration and economic optimization.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Modeled reaction kinetics, heat and mass transfer behavior, and thermodynamic equilibria in Aspen Plus to determine optimal reactor configuration and operating conditions.</li>
+          <li>Designed distillation columns, reboilers, condensers, and heat exchangers to purify products and manage recycle and waste streams.</li>
+          <li>Performed cooling utility analysis using water and methyl ethyl ketone (MEK) to minimize cost while maintaining separation efficiency.</li>
+          <li>Generated capital and operating cost estimates and optimized heat exchanger networks for plant-level decision making.</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Tools &amp; Methods</h3>
+        <ul>
+          <li><strong>Software:</strong> Aspen Plus</li>
+          <li><strong>Methods:</strong> Reaction kinetics modeling, thermodynamic equilibrium, heat and mass balance, TEA (techno-economic analysis)</li>
+          <li><strong>Deliverables:</strong> Process flow diagrams, column sizing, heat exchanger network design, cost estimation report</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: ABSORBER -->
+    <section id="proj-absorber" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Absorber Revamp &amp; Heat-Integration Optimization</h2>
+      <div class="detail-hero">
+        <h2>29% Reduction in Annual Operating Cost Through Heat-Duty Optimization</h2>
+        <p class="detail-meta">Chemical Engineering Process Optimization &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Spring 2024</p>
+        <p>Evaluated and redesigned a reboiled solvent absorber system to optimize ethane and propane separation efficiency while minimizing operating costs through strategic heat-duty adjustments and exchanger reconfiguration.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Simulated baseline and modified reboiler and side-exchanger heat duties to improve separation performance.</li>
+          <li>Investigated side-exchanger removal and reconfiguration, identifying an optimal two-cooler design.</li>
+          <li>Achieved a <strong>29% reduction in annual operating cost</strong> without additional capital investment.</li>
+          <li>Justified design decisions through quantitative simulation results and thermodynamic reasoning.</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Tools &amp; Methods</h3>
+        <ul>
+          <li><strong>Software:</strong> Aspen Plus</li>
+          <li><strong>Methods:</strong> Heat integration analysis, sensitivity studies, cost-benefit evaluation</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: OPTICAL PUMPING -->
+    <section id="proj-optical" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Optical Pumping &amp; Zeeman Spectroscopy of Rubidium</h2>
+      <div class="detail-hero">
+        <h2>Hyperfine Structure and Zeeman Splitting in Rb-85 and Rb-87</h2>
+        <p class="detail-meta">Advanced Physics Laboratory &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Fall 2023</p>
+        <p>Performed optical pumping experiments on rubidium vapor to study hyperfine structure and Zeeman splitting using circularly polarized light and RF resonance techniques.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Aligned optical components to generate right-hand circularly polarized pumping light for isotope-selective pumping.</li>
+          <li>Operated Helmholtz coils to tune magnetic fields and performed field sweeps to observe resonant depumping transitions.</li>
+          <li>Applied RF fields to probe Zeeman level spacings and measured resonance frequencies versus magnetic field strength.</li>
+          <li>Analyzed absorption traces to identify isotopic responses and quantify hyperfine splitting behavior in both Rb-85 and Rb-87.</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Instrumentation</h3>
+        <ul>
+          <li>Rubidium vapor cell, optical polarizers, quarter-wave plate</li>
+          <li>Helmholtz coil system, RF signal generator</li>
+          <li>Photodetector and oscilloscope for absorption trace acquisition</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: HALL EFFECT -->
+    <section id="proj-hall" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Hall Effect &amp; Semiconductor Characterization</h2>
+      <div class="detail-hero">
+        <h2>Carrier Density, Mobility, and Conductivity Type in Germanium</h2>
+        <p class="detail-meta">Advanced Physics Laboratory &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Spring 2023</p>
+        <p>Conducted a full experimental investigation of the Hall Effect in n-type and p-type germanium to determine carrier concentration, mobility, and conductivity type using precision measurement techniques.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Operated an electromagnet, precision current source, and SR830 lock-in amplifier to extract microvolt-scale Hall voltages.</li>
+          <li>Performed four-point longitudinal and transverse measurements to isolate the Hall response from magnetoresistance contributions.</li>
+          <li>Determined carrier density and mobility from linear Hall resistance trends across varying magnetic field strengths.</li>
+          <li>Interpreted results using semiconductor band structure and charge transport theory to confirm n-type and p-type behavior.</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Instrumentation</h3>
+        <ul>
+          <li>Electromagnet with variable field supply</li>
+          <li>SR830 lock-in amplifier, precision current source</li>
+          <li>n-type and p-type germanium samples with four-point probe geometry</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: ARDUINO -->
+    <section id="proj-arduino" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Arduino-Based Fruit Ripeness Detector</h2>
+      <div class="detail-hero">
+        <h2>Ethylene Gas Sensor Automation for Ripeness Detection</h2>
+        <p class="detail-meta">Engineering Design Project &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Fall 2022</p>
+        <p>Developed a sensor-based automation system using Arduino to detect fruit ripeness by monitoring ethylene gas concentration, with threshold-based output triggering and experimental validation.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Programmed Arduino microcontroller to process gas sensor analog inputs and trigger threshold-based digital outputs.</li>
+          <li>Assembled and calibrated hardware components including MQ-series gas sensor, LED indicators, and buzzer outputs.</li>
+          <li>Validated system accuracy through controlled experimental testing across multiple fruit types and ripeness stages.</li>
+          <li>Documented sensor response curves and threshold calibration methodology.</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Tools &amp; Technologies</h3>
+        <ul>
+          <li><strong>Microcontroller:</strong> Arduino Uno</li>
+          <li><strong>Sensors:</strong> MQ-series ethylene/gas sensor</li>
+          <li><strong>Programming:</strong> Arduino C/C++</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: WINDMILL -->
+    <section id="proj-windmill" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Renewable Energy Windmill Design</h2>
+      <div class="detail-hero">
+        <h2>Small-Scale Wind Turbine Fabrication and Performance Analysis</h2>
+        <p class="detail-meta">Engineering Design Project &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Spring 2022</p>
+        <p>Designed and constructed a small-scale wind turbine to evaluate aerodynamic efficiency and renewable energy generation under controlled wind conditions, with quantitative power output analysis.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Designed and fabricated turbine blades using CAD modeling and iterative prototyping to optimize aerodynamic geometry.</li>
+          <li>Measured electrical power output at varying wind speeds using a connected generator and multimeter.</li>
+          <li>Used Python and MATLAB to calculate generated power, plot efficiency curves, and compare results to theoretical predictions based on Betz's Law.</li>
+          <li>Analyzed mechanical-to-electrical conversion losses and proposed design improvements.</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Tools &amp; Technologies</h3>
+        <ul>
+          <li><strong>CAD:</strong> Autodesk Fusion 360</li>
+          <li><strong>Analysis:</strong> Python, MATLAB</li>
+          <li><strong>Hardware:</strong> Small DC generator, anemometer, fabricated blade assembly</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECT DETAIL: HEART RATE MONITOR -->
+    <section id="proj-hrm" class="section">
+      <span class="back-btn" onclick="showSection('projects', null)">← Back to Projects</span>
+      <h2 class="section-title">Electrical Circuit Heart Rate Monitor</h2>
+      <div class="detail-hero">
+        <h2>Sensor-Based Pulse Detection with Real-Time Signal Display</h2>
+        <p class="detail-meta">Electrical Engineering Design Project &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; Spring 2022</p>
+        <p>Developed an electrical circuit-based heart rate monitoring system integrating physiological sensors, analog signal conditioning, and real-time digital output display.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Key Contributions</h3>
+        <ul>
+          <li>Designed and constructed analog signal conditioning circuitry including amplification and filtering stages to isolate the pulse waveform from noise.</li>
+          <li>Integrated a photoplethysmography (PPG) sensor for non-invasive pulse detection.</li>
+          <li>Implemented a digital display output to show real-time heart rate in beats per minute.</li>
+          <li>Tested and validated circuit performance across multiple subjects and measurement conditions.</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h3>Tools &amp; Technologies</h3>
+        <ul>
+          <li><strong>Components:</strong> Op-amps, capacitors, resistors, PPG sensor</li>
+          <li><strong>Equipment:</strong> Oscilloscope, function generator, breadboard prototyping</li>
+          <li><strong>Display:</strong> 7-segment digital display</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function showSection(id, el) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) target.classList.add('active');
+      if (el) el.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
